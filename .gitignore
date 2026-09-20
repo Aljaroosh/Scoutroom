@@ -3,6 +3,6 @@ dist/
 .env
 .env.*
 !.env.example
-
+backend/src/generated/
 .DS_Store
 Thumbs.db

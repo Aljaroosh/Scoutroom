@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum MembershipLevel {
+  BASIC
+  PLUS
+  FULL
+}
+
+model User {
+  id              String          @id @default(uuid())
+  email           String          @unique
+  passwordHash    String
+  name            String?
+  role            UserRole        @default(USER)
+  membershipLevel MembershipLevel @default(BASIC)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  payments     Payment[]
+  scoutList    ScoutListEntry[]
+  scoutReports ScoutReport[]
+  contentPages ContentPage[]
+}
+
+model Club {
+  id        String   @id @default(uuid())
+  name      String
+  country   String
+  logoUrl   String?
+  createdAt DateTime @default(now())
+
+  players Player[]
+}
+
+model Player {
+  id          String   @id @default(uuid())
+  firstName   String
+  lastName    String
+  position    String
+  nationality String
+  age         Int?
+  imageUrl    String?
+  clubId      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  club       Club?            @relation(fields: [clubId], references: [id])
+  reports    ScoutReport[]
+  scoutLists ScoutListEntry[]
+}
+
+model ScoutReport {
+  id            String          @id @default(uuid())
+  title         String
+  summary       String
+  strengths     String?
+  weaknesses    String?
+  rating        Int?
+  playerId      String
+  createdById   String
+  requiredLevel MembershipLevel @default(BASIC)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  player    Player @relation(fields: [playerId], references: [id])
+  createdBy User   @relation(fields: [createdById], references: [id])
+}
+
+model ScoutListEntry {
+  id        String   @id @default(uuid())
+  userId    String
+  playerId  String
+  note      String?
+  rating    Int?
+  createdAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id])
+  player Player @relation(fields: [playerId], references: [id])
+
+  @@unique([userId, playerId])
+}
+
+model ContentPage {
+  id            String          @id @default(uuid())
+  title         String
+  slug          String          @unique
+  description   String?
+  content       String
+  imageUrl      String?
+  requiredLevel MembershipLevel @default(BASIC)
+  createdById   String
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  createdBy User @relation(fields: [createdById], references: [id])
+}
+
+model Payment {
+  id              String          @id @default(uuid())
+  userId          String
+  membershipLevel MembershipLevel
+  amountCents     Int
+  receiptNumber   String          @unique
+  createdAt       DateTime        @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}

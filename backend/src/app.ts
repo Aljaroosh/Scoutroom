@@ -1,3 +1,4 @@
+import playerRoutes from "./routes/playerRoutes.js";
 import express from "express";
 import cors from "cors";
 
@@ -12,5 +13,5 @@ app.get("/api/health", (_req, res) => {
     message: "ScoutRoom API is running",
   });
 });
-
+app.use("/api/players", playerRoutes);
 export default app;
