@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { randomUUID } from "node:crypto";
 import prisma from "../lib/prisma.js";
 import { requireAuth } from "../middleware/authMiddleware.js";
+import { requireMembership } from "../middleware/membershipMiddleware.js";
 
 const router = Router();
 
@@ -184,4 +185,15 @@ router.post("/logout", requireAuth, async (_req, res) => {
     });
   }
 });
+router.get(
+  "/plus-test",
+  requireAuth,
+  requireMembership("PLUS"),
+  async (_req, res) => {
+    res.status(200).json({
+      success: true,
+      message: "You have access to PLUS content",
+    });
+  }
+);
 export default router;
