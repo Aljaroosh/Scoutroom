@@ -1,0 +1,85 @@
+  .tiers {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .tiers-intro {
+    opacity: 0.8;
+    margin-bottom: 2rem;
+  }
+
+  .tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .tier-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(128, 128, 128, 0.35);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: left;
+  }
+
+  .tier-card--featured {
+    border: 2px solid #2e9e5b;
+  }
+
+  .tier-badge {
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2e9e5b;
+    color: white;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.75rem;
+    border-radius: 999px;
+  }
+
+  .tier-card h2 {
+    margin: 0;
+  }
+
+  .tier-tagline {
+    opacity: 0.75;
+    margin-top: 0.25rem;
+  }
+
+  .tier-price {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin: 1rem 0;
+  }
+
+  .tier-card ul {
+    padding-left: 1.2rem;
+    flex-grow: 1;
+  }
+
+  .tier-card li {
+    margin-bottom: 0.4rem;
+  }
+
+  .tier-button {
+    display: block;
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: 8px;
+    background: #2e9e5b;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    font-size: 1rem;
+  }
+
+  .tier-button--muted {
+    background: rgba(128, 128, 128, 0.25);
+    color: inherit;
+    cursor: default;
+  }
