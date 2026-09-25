@@ -2,6 +2,7 @@ import playerRoutes from "./routes/playerRoutes.js";
 import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
 const app = express();
 
 app.use(cors());
@@ -14,4 +15,5 @@ app.get("/api/health", (_req, res) => {
   });
 });
 app.use("/api/players", playerRoutes);
+app.use("/api/payments", paymentRoutes);
 export default app;
