@@ -8,6 +8,7 @@
   import ThankYouPage from "./pages/ThankYouPage";
   import AccountPage from "./pages/AccountPage";
   import NotFoundPage from "./pages/NotFoundPage";
+  import ContentPage from "./pages/ContentPage";
 
   export default function App() {
     return (
@@ -21,6 +22,7 @@
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/thank-you" element={<ThankYouPage />} />
             <Route path="/account" element={<AccountPage />} />
+            <Route path="/content/:slug" element={<ContentPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
