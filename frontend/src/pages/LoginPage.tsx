@@ -1,5 +1,5 @@
   import { useState, type FormEvent } from "react";
-  import { Link, useNavigate } from "react-router";
+  import { Link, useLocation, useNavigate } from "react-router";
   import { useAuth } from "../context/AuthContext";
   import { ApiError } from "../lib/api";
   import "./AuthForm.css";
@@ -7,6 +7,8 @@
   export default function LoginPage() {
     const { login } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = (location.state as { from?: { pathname: string; search: string } } | null)?.from;
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -20,7 +22,7 @@
 
       try {
         await login(email, password);
-        navigate("/account");
+        navigate(from ? from.pathname + from.search : "/account", { replace: true });
       } catch (err) {
         if (err instanceof ApiError && err.status === 401) {
           setError("Fel e-post eller lösenord.");
