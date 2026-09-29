@@ -18,8 +18,10 @@ const prisma = new PrismaClient({
 
 async function main() {
   // Remove old test data
-  await prisma.player.deleteMany();
-  await prisma.club.deleteMany();
+await prisma.scoutListEntry.deleteMany();
+await prisma.scoutReport.deleteMany();
+await prisma.player.deleteMany();
+await prisma.club.deleteMany();
 
   const clubs = await Promise.all([
     prisma.club.create({
