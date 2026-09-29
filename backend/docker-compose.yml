@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:17 
+    container_name: scoutroom-db
+    environment:
+      POSTGRES_USER: scoutroom
+      POSTGRES_PASSWORD: scoutroom 
+      POSTGRES_DB: scoutroom
+    ports:
+      - "5433:5432" 
+    volumes:
+      - scoutroom-data:/var/lib/postgresql/data 
+
+volumes:
+  scoutroom-data:
