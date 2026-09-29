@@ -1,4 +1,4 @@
-  import type { User } from "../types";
+  import type { ContentPage, User } from "../types";
 
   const API_URL = import.meta.env.VITE_API_URL;
   const TOKEN_KEY = "scoutroom_token";
@@ -53,3 +53,10 @@
 
     logout: () => request<{ success: boolean }>("/api/auth/logout", { method: "POST" }),
   };
+
+  export const contentApi = {
+  getBySlug: (slug: string) =>
+    request<{ success: boolean; page: ContentPage }>(
+      `/api/content/${encodeURIComponent(slug)}`
+    ),
+};
