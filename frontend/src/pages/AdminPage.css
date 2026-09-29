@@ -1,0 +1,88 @@
+.admin-page {
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  text-align: left;
+}
+
+.admin-page h1 {
+  margin: 0 0 1.5rem;
+}
+
+.admin-page__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.admin-page__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.admin-page__field input,
+.admin-page__field select,
+.admin-page__field textarea {
+  font: inherit;
+  font-weight: 400;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+}
+
+
+.admin-page__field option {
+  color: #111;
+}
+
+.admin-page__field textarea {
+  font-family: ui-monospace, Consolas, monospace; 
+  resize: vertical;
+}
+
+.admin-page__hint {
+  font-weight: 400;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.admin-page__error {
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: #f87171;
+}
+
+.admin-page__message {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+}
+
+.admin-page__message--success {
+  background: color-mix(in srgb, #22c55e 15%, transparent);
+}
+
+.admin-page__message--error {
+  background: color-mix(in srgb, #ef4444 15%, transparent);
+}
+
+.admin-page__submit {
+  align-self: flex-start;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  background: #e8663d; 
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-page__submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
