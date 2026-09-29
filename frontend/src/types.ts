@@ -27,3 +27,13 @@ export type ContentResult =
   | { status: "login-required" }
   | { status: "upgrade-required"; requiredLevel: MembershipLevel }
   | { status: "not-found" };
+
+
+export type CreateContentInput = {
+  title: string;
+  slug: string;
+  description?: string;
+  content: string;
+  imageUrl?: string;
+  requiredLevel: MembershipLevel;
+};
