@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router";
 import { useAuth } from "../context/AuthContext";
 import { getContent } from "../lib/content";
 import { TIERS } from "../lib/tiers";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import UpgradePrompt from "../components/UpgradePrompt";
 import type { ContentResult } from "../types";
 import "./ContentPage.css";
@@ -77,7 +79,9 @@ export default function ContentPage() {
           {tierName && <span className="content-page__type">{tierName}</span>}
           <h1 className="content-page__title">{page.title}</h1>
           {page.description && <p className="content-page__excerpt">{page.description}</p>}
-          <div className="content-page__body">{page.content}</div>
+          <div className="content-page__body">
+          <Markdown remarkPlugins={[remarkGfm]}>{page.content}</Markdown>
+</div>
         </article>
       );
     }
