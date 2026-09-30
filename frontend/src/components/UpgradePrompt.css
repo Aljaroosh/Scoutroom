@@ -1,0 +1,40 @@
+.upgrade-prompt {
+  margin-top: 2rem;
+  padding: 2rem;
+  border: 1px solid currentColor;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.upgrade-prompt__icon {
+  font-size: 2rem;
+}
+
+.upgrade-prompt__title {
+  margin: 0.5rem 0;
+}
+
+.upgrade-prompt__features {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 1.5rem;
+  line-height: 1.8;
+}
+
+.upgrade-prompt__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.upgrade-prompt__cta {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  background: #e8663d;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
