@@ -9,6 +9,13 @@
     role: UserRole;
   };
 
+   export type Receipt = {
+     id: string;
+     membershipLevel: MembershipLevel;
+     amountCents: number;
+     receiptNumber: string;
+     createdAt: string;
+   };
 export type ContentPage = {
   id: string;
   title: string;
@@ -29,11 +36,11 @@ export type ContentResult =
   | { status: "not-found" };
 
 
-export type CreateContentInput = {
-  title: string;
-  slug: string;
-  description?: string;
-  content: string;
-  imageUrl?: string;
-  requiredLevel: MembershipLevel;
-};
+   export type CreateContentInput = {
+     title: string;
+     slug: string;
+     description?: string;
+     content: string;
+     imageUrl?: string;
+     requiredLevel: MembershipLevel;
+   };
