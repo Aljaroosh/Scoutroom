@@ -1,4 +1,4 @@
-  import type { User } from "../types";
+import type { MembershipLevel, Receipt, User } from "../types";
 
   const API_URL = import.meta.env.VITE_API_URL;
   const TOKEN_KEY = "scoutroom_token";
@@ -53,3 +53,17 @@
 
     logout: () => request<{ success: boolean }>("/api/auth/logout", { method: "POST" }),
   };
+
+     export const paymentApi = {
+     upgrade: (membershipLevel: MembershipLevel) =>
+       request<{
+         success: boolean;
+         membershipLevel: MembershipLevel;
+         receipt: { receiptNumber: string; amountCents: number; createdAt: string };
+       }>("/api/payments/upgrade", {
+         method: "POST",
+         body: JSON.stringify({ membershipLevel }),
+       }),
+
+     receipts: () => request<{ success: boolean; receipts: Receipt[] }>("/api/payments/receipts"),
+   };

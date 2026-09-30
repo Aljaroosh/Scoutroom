@@ -8,3 +8,11 @@
     membershipLevel: MembershipLevel;
     role: UserRole;
   };
+
+     export type Receipt = {
+     id: string;
+     membershipLevel: MembershipLevel;
+     amountCents: number;
+     receiptNumber: string;
+     createdAt: string;
+   };
