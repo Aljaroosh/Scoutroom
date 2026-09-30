@@ -4,6 +4,7 @@ import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
 import contentRoutes from "./routes/contentRoutes.js";
+import scoutListRoutes from "./routes/scoutListRoutes.js";
 const app = express();
 
 app.use(cors());
@@ -18,4 +19,5 @@ app.get("/api/health", (_req, res) => {
 app.use("/api/players", playerRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/content", contentRoutes);
+app.use("/api/scout-list", scoutListRoutes);
 export default app;

@@ -7,8 +7,11 @@
   import CheckoutPage from "./pages/CheckoutPage";
   import ThankYouPage from "./pages/ThankYouPage";
   import AccountPage from "./pages/AccountPage";
+  import ContentPage from "./pages/ContentPage";
   import NotFoundPage from "./pages/NotFoundPage";
   import ProtectedRoute from "./components/ProtectedRoute";
+  import AdminRoute from "./components/AdminRoute";
+  import AdminPage from "./pages/AdminPage";
 
   export default function App() {
     return (
@@ -19,10 +22,14 @@
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/tiers" element={<TiersPage />} />
+            <Route path="/content/:slug" element={<ContentPage />} />
             <Route element={<ProtectedRoute />}>
-    <Route path="/checkout" element={<CheckoutPage />} />
-    <Route path="/thank-you" element={<ThankYouPage />} />
-    <Route path="/account" element={<AccountPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/thank-you" element={<ThankYouPage />} />
+            <Route path="/account" element={<AccountPage />} />
+            <Route element={<AdminRoute />}>
+            <Route path="/admin" element={<AdminPage />} />
+            </Route>
           </Route>
             <Route path="*" element={<NotFoundPage />} />
           </Route>

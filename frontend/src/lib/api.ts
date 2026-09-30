@@ -1,4 +1,4 @@
-import type { MembershipLevel, Receipt, User } from "../types";
+   import type { ContentPage, CreateContentInput, MembershipLevel, Receipt, User } from "../types";
 
   const API_URL = import.meta.env.VITE_API_URL;
   const TOKEN_KEY = "scoutroom_token";
@@ -67,3 +67,15 @@ import type { MembershipLevel, Receipt, User } from "../types";
 
      receipts: () => request<{ success: boolean; receipts: Receipt[] }>("/api/payments/receipts"),
    };
+export const contentApi = {
+  getBySlug: (slug: string) =>
+    request<{ success: boolean; page: ContentPage }>(
+      `/api/content/${encodeURIComponent(slug)}`
+    ),
+
+  create: (data: CreateContentInput) =>
+    request<{ success: boolean; page: ContentPage }>("/api/content", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }),
+};

@@ -4,25 +4,25 @@ import type { MembershipLevel } from "../types";
 import "./UpgradePrompt.css";
 
 type UpgradePromptProps = {
-  requiredLevel: MembershipLevel;
+  requiredLevel: MembershipLevel | null; // null = okänt (användaren är inte inloggad)
   isLoggedIn: boolean;
 };
 
 export default function UpgradePrompt({ requiredLevel, isLoggedIn }: UpgradePromptProps) {
-  const tier = TIERS.find((t) => t.level === requiredLevel);
-  const tierName = tier?.name ?? requiredLevel;
+  // TIERS används här för VISNING (namn, pris, förmåner) – inte för behörighet
+  const tier = requiredLevel ? TIERS.find((t) => t.level === requiredLevel) : undefined;
 
   return (
     <section className="upgrade-prompt" aria-labelledby="upgrade-prompt-title">
       <span className="upgrade-prompt__icon" aria-hidden="true">🔒</span>
       <h2 id="upgrade-prompt-title" className="upgrade-prompt__title">
-        Lås upp hela rapporten
+        {isLoggedIn ? "Lås upp hela rapporten" : "Logga in för att läsa"}
       </h2>
 
       {isLoggedIn ? (
         <>
           <p>
-            Det här innehållet ingår i <strong>{tierName}</strong>
+            Det här innehållet ingår i <strong>{tier?.name ?? requiredLevel}</strong>
             {tier && ` för ${tier.priceKr} kr`}.
           </p>
           {tier && (
@@ -38,10 +38,7 @@ export default function UpgradePrompt({ requiredLevel, isLoggedIn }: UpgradeProm
         </>
       ) : (
         <>
-          <p>
-            Skapa ett gratis konto för att komma igång. Det här innehållet kräver{" "}
-            <strong>{tierName}</strong>.
-          </p>
+          <p>Skapa ett gratis konto för att komma åt spelarprofiler och scoutingartiklar.</p>
           <div className="upgrade-prompt__actions">
             <Link to="/register" className="upgrade-prompt__cta">
               Skapa konto

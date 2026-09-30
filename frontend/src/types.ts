@@ -9,32 +9,38 @@
     role: UserRole;
   };
 
-     export type Receipt = {
+   export type Receipt = {
      id: string;
      membershipLevel: MembershipLevel;
      amountCents: number;
      receiptNumber: string;
      createdAt: string;
    };
-  // --- Innehållssidor ---
-export type ContentType = "PLAYER_PROFILE" | "CLUB_REPORT" | "ARTICLE";
-
-// Fullständig post – det admin ser och redigerar
 export type ContentPage = {
   id: string;
   title: string;
-  slug: string; 
-  type: ContentType;
-  excerpt: string; 
-  body: string; 
+  slug: string;
+  description: string | null;
+  content: string; // markdown
   imageUrl: string | null;
-  requiredLevel: MembershipLevel; // lägsta nivå som krävs
-  published: boolean;
+  requiredLevel: MembershipLevel;
+  createdById: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
-// Det en användare får från API:t: upplåst MED body, eller låst UTAN body
-type ContentPreview = Omit<ContentPage, "body">;
+export type ContentResult =
+  | { status: "ok"; page: ContentPage }
+  | { status: "login-required" }
+  | { status: "upgrade-required"; requiredLevel: MembershipLevel }
+  | { status: "not-found" };
 
-export type ContentForUser =
-  | (ContentPreview & { locked: false; body: string })
-  | (ContentPreview & { locked: true });
+
+   export type CreateContentInput = {
+     title: string;
+     slug: string;
+     description?: string;
+     content: string;
+     imageUrl?: string;
+     requiredLevel: MembershipLevel;
+   };
