@@ -12,6 +12,7 @@
   import ProtectedRoute from "./components/ProtectedRoute";
   import AdminRoute from "./components/AdminRoute";
   import AdminPage from "./pages/AdminPage";
+  import ContentListPage from "./pages/ContentListPage";
 
   export default function App() {
     return (
@@ -22,6 +23,7 @@
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/tiers" element={<TiersPage />} />
+            <Route path="/content" element={<ContentListPage />} />
             <Route path="/content/:slug" element={<ContentPage />} />
             <Route element={<ProtectedRoute />}>
             <Route path="/checkout" element={<CheckoutPage />} />

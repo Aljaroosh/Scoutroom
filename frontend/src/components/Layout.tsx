@@ -14,7 +14,9 @@
       <>
         <nav style={{ display: "flex", gap: "1rem", padding: "1rem", alignItems: "center" }}>
           <NavLink to="/">Hem</NavLink>
+          <NavLink to="/content">Innehåll</NavLink>
           <NavLink to="/tiers">Nivåer</NavLink>
+        {user?.role === "ADMIN" && <NavLink to="/admin">Admin</NavLink>}
 
           <div style={{ marginLeft: "auto", display: "flex", gap: "1rem", alignItems: "center" }}>
             {user ? (

@@ -44,3 +44,5 @@ export type ContentResult =
      imageUrl?: string;
      requiredLevel: MembershipLevel;
    };
+
+export type ContentSummary = Pick<ContentPage, "id" | "title" | "slug">;

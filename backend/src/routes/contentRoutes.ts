@@ -66,6 +66,20 @@ router.post("/", requireAuth, async (req, res) => {
   }
 });
 
+router.get("/", async (_req, res) => {
+  try {
+    const pages = await prisma.contentPage.findMany({
+      select: { id: true, title: true, slug: true },
+      orderBy: { createdAt: "desc" },
+    });
+
+    res.status(200).json({ success: true, pages });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Could not fetch content pages" });
+  }
+});
+
 // Användare hämtar en innehållssida
 router.get("/:slug", requireAuth, async (req, res) => {
   const user = res.locals.user;
