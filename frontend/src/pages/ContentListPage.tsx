@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { contentApi } from "../lib/api";
 import type { ContentSummary } from "../types";
-
+import "./ListPage.css";
 export default function ContentListPage() {
   const [pages, setPages] = useState<ContentSummary[]>([]);
 
@@ -11,7 +11,7 @@ export default function ContentListPage() {
   }, []);
 
   return (
-    <section>
+    <section className="list-page">
       <h1>Innehåll</h1>
       <ul>
         {pages.map((page) => (

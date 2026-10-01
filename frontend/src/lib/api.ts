@@ -1,4 +1,4 @@
-   import type { ContentPage, ContentSummary, CreateContentInput, MembershipLevel, Receipt, User } from "../types";
+   import type { ContentPage, ContentSummary, CreateContentInput, MembershipLevel, Player, Receipt, ScoutListEntry, User } from "../types";
 
   const API_URL = import.meta.env.VITE_API_URL;
   const TOKEN_KEY = "scoutroom_token";
@@ -78,5 +78,31 @@ export const contentApi = {
     request<{ success: boolean; page: ContentPage }>("/api/content", {
       method: "POST",
       body: JSON.stringify(data),
+    }),
+};
+
+export const playerApi = {
+
+  list: () => request<Player[]>("/api/players"),
+};
+
+export const scoutListApi = {
+  list: () => request<{ success: boolean; scoutList: ScoutListEntry[] }>("/api/scout-list"),
+
+  add: (playerId: string) =>
+    request<{ success: boolean; entry: ScoutListEntry }>("/api/scout-list", {
+      method: "POST",
+      body: JSON.stringify({ playerId }),
+    }),
+
+  update: (playerId: string, data: { note?: string; rating?: number }) =>
+    request<{ success: boolean; entry: ScoutListEntry }>(
+      `/api/scout-list/${encodeURIComponent(playerId)}`,
+      { method: "PATCH", body: JSON.stringify(data) }
+    ),
+
+  remove: (playerId: string) =>
+    request<{ success: boolean }>(`/api/scout-list/${encodeURIComponent(playerId)}`, {
+      method: "DELETE",
     }),
 };
