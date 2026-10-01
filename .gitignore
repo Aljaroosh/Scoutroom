@@ -6,3 +6,4 @@ dist/
 backend/src/generated/
 .DS_Store
 Thumbs.db
+.specific/
