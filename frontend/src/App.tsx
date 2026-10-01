@@ -13,6 +13,8 @@
   import AdminRoute from "./components/AdminRoute";
   import AdminPage from "./pages/AdminPage";
   import ContentListPage from "./pages/ContentListPage";
+  import PlayersPage from "./pages/PlayersPage";
+  import ScoutListPage from "./pages/ScoutListPage";
 
   export default function App() {
     return (
@@ -24,11 +26,13 @@
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/tiers" element={<TiersPage />} />
             <Route path="/content" element={<ContentListPage />} />
+            <Route path="/players" element={<PlayersPage />} />
             <Route path="/content/:slug" element={<ContentPage />} />
             <Route element={<ProtectedRoute />}>
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/thank-you" element={<ThankYouPage />} />
             <Route path="/account" element={<AccountPage />} />
+            <Route path="/scout-list" element={<ScoutListPage />} />
             <Route element={<AdminRoute />}>
             <Route path="/admin" element={<AdminPage />} />
             </Route>

@@ -46,3 +46,31 @@ export type ContentResult =
    };
 
 export type ContentSummary = Pick<ContentPage, "id" | "title" | "slug">;
+
+
+export type Club = {
+  id: string;
+  name: string;
+  country: string;
+  logoUrl: string | null;
+};
+
+export type Player = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  position: string;
+  nationality: string;
+  age: number | null;
+  imageUrl: string | null;
+  club: Club | null;
+};
+
+export type ScoutListEntry = {
+  id: string;
+  playerId: string;
+  note: string | null;
+  rating: number | null;
+  createdAt: string;
+  player: Player;
+};
