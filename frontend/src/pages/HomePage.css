@@ -1,0 +1,72 @@
+   .home {
+     max-width: 1000px;
+     margin: 0 auto;
+     text-align: center;
+   }
+
+   .home-hero {
+     padding: 4rem 1rem 3rem;
+   }
+
+   .home-hero h1 {
+     font-size: clamp(2rem, 5vw, 3.2rem);
+     line-height: 1.2;
+     margin: 0 0 1.5rem;
+   }
+
+   .home-hero p {
+     font-size: 1.15rem;
+     line-height: 1.6;
+     opacity: 0.8;
+     max-width: 600px;
+     margin: 0 auto 2.5rem;
+   }
+
+   .home-actions {
+     display: flex;
+     gap: 1rem;
+     justify-content: center;
+     flex-wrap: wrap;
+   }
+
+   .home-button {
+     padding: 0.8rem 1.5rem;
+     border-radius: 8px;
+     background: #2e9e5b;
+     color: white;
+     text-decoration: none;
+     font-weight: bold;
+   }
+
+   .home-button--outline {
+     background: transparent;
+     color: inherit;
+     border: 2px solid #2e9e5b;
+   }
+
+   .home-features {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+     gap: 1.5rem;
+     margin: 4rem 0;
+     text-align: left;
+   }
+
+   .home-feature {
+     border: 1px solid rgba(128, 128, 128, 0.35);
+     border-radius: 12px;
+     padding: 1.5rem;
+   }
+
+   .home-feature-icon {
+     font-size: 2rem;
+   }
+
+   .home-feature h3 {
+     margin: 0.5rem 0;
+   }
+
+   .home-feature p {
+     opacity: 0.8;
+     margin: 0;
+   }

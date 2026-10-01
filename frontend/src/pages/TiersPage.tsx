@@ -1,30 +1,30 @@
   import { Link } from "react-router";
   import { useAuth } from "../context/AuthContext";
-  import { TIERS, type Tier } from "../lib/tiers";
+  import { TIERS, TIER_RANK, type Tier } from "../lib/tiers";
   import "./TiersPage.css";
 
   export default function TiersPage() {
     const { user } = useAuth();
 
-    function renderAction(tier: Tier) {
-      if (user?.membershipLevel === tier.level) {
-        return <span className="tier-button tier-button--muted">Din nuvarande nivå</span>;
-      }
+   function renderAction(tier: Tier) {
+     if (user?.membershipLevel === tier.level) {
+       return <span className="tier-button tier-button--muted">Din nuvarande nivå</span>;
+     }
 
-      if (tier.priceKr === 0) {
-        return user ? (
-          <span className="tier-button tier-button--muted">Ingår i alla konton</span>
-        ) : (
-          <Link to="/register" className="tier-button">Kom igång gratis</Link>
-        );
-      }
+     if (user && TIER_RANK[tier.level] < TIER_RANK[user.membershipLevel]) {
+       return <span className="tier-button tier-button--muted">Ingår i din nivå</span>;
+     }
 
-      return (
-        <Link to={`/checkout?level=${tier.level}`} className="tier-button">
-          Välj {tier.name}
-        </Link>
-      );
-    }
+     if (tier.priceKr === 0) {
+       return <Link to="/register" className="tier-button">Kom igång gratis</Link>;
+     }
+
+     return (
+       <Link to={`/checkout?level=${tier.level}`} className="tier-button">
+         Välj {tier.name}
+       </Link>
+     );
+   }
 
     return (
       <section className="tiers">

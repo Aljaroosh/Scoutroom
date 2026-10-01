@@ -19,14 +19,14 @@
     {
       level: "PLUS",
       name: "Head Scout",
-      priceKr: 149,
+      priceKr: 99,
       tagline: "För dig som jämför och väljer",
       features: ["Allt i Regional Scout", "Jämför spelare sida vid sida", "Klubbrapporter"],
     },
     {
       level: "FULL",
       name: "Chief Scout",
-      priceKr: 299,
+      priceKr: 199,
       tagline: "För dig som bygger en trupp",
       features: [
         "Allt i Head Scout",
@@ -36,3 +36,9 @@
       ],
     },
   ];
+
+     export const TIER_RANK: Record<MembershipLevel, number> = {
+     BASIC: 1,
+     PLUS: 2,
+     FULL: 3,
+   };
